@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Wrapped - Upload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg-color: rgba(30, 30, 30, 0.6);
+            --text-color: #e0e0e0;
+            --uber-yellow: #f8c300;
+            --uber-gray: #aaaaaa;
+            --uber-blue: #0088ff;
+            --success-green: #00c853;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .liquid-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(248,195,0,0.1) 0%, rgba(248,195,0,0) 70%);
+            animation: float 15s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        .bubble-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
+        .bubble-2 { width: 200px; height: 200px; top: 70%; left: 80%; animation-delay: 2s; }
+        .bubble-3 { width: 250px; height: 250px; top: 40%; left: 70%; animation-delay: 4s; }
+        .bubble-4 { width: 150px; height: 150px; top: 20%; left: 50%; animation-delay: 6s; }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 30px;
+            position: relative;
+            background: rgba(20, 20, 20, 0.2);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                inset 0 2px 15px rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            opacity: 0.4;
+            pointer-events: none;
+            animation: rotate 30s linear infinite;
+        }
+
+        h1 {
+            color: var(--uber-yellow);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(248, 195, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--uber-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .upload-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(248, 195, 0, 0.5);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin: 30px auto;
+            background: rgba(30, 30, 30, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+            max-width: 500px; /* <- Impede de ultrapassar o container */
+            box-sizing: border-box;
+        }
+
+
+
+        .upload-area:hover {
+            background: rgba(40, 40, 40, 0.4);
+            border-color: var(--uber-yellow);
+        }
+
+        .upload-area i {
+            font-size: 4rem;
+            color: var(--uber-yellow);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .upload-area .text {
+            font-size: 1.2rem;
+            color: var(--uber-gray);
+        }
+
+        .upload-area .note {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--uber-yellow), #ffaa00);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(248, 195, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        #file-name {
+            margin-top: 15px;
+            font-size: 1rem;
+            color: var(--uber-yellow);
+        }
+
+        .instructions {
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .instructions h2 {
+            color: var(--uber-yellow);
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .instructions code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .status.loading {
+            background: rgba(0, 136, 255, 0.2);
+            display: block;
+        }
+
+        .status.success {
+            background: rgba(0, 200, 83, 0.2);
+            display: block;
+        }
+
+        .status.error {
+            background: rgba(213, 0, 0, 0.2);
+            display: block;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, -15px) rotate(5deg);
+            }
+            50% {
+                transform: translate(-15px, 10px) rotate(-5deg);
+            }
+            75% {
+                transform: translate(10px, 15px) rotate(3deg);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+      <div class="liquid-bubble bubble-1"></div>
+      <div class="liquid-bubble bubble-2"></div>
+      <div class="liquid-bubble bubble-3"></div>
+      <div class="liquid-bubble bubble-4"></div>
+    </div>
+
+    <div class="container">
+      <h1>Uber Wrapped</h1>
+      <p>Faça upload do seu histórico de corridas do Uber e descubra suas estatísticas</p>
+
+      <form method="POST" action="/upload" enctype="multipart/form-data">
+        <!-- ÁREA DE UPLOAD -->
+        <label for="file-input" class="upload-area">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <div class="text">Clique ou arraste seu arquivo CSV</div>
+          <div class="note">Formatos suportados: .csv</div>
+          <input type="file" id="file-input" name="file" accept=".csv" required>
+          <div id="file-name"></div>
+        </label>
+
+        <!-- BOTÃO DE SUBMISSÃO -->
+        <button type="submit" class="btn pulse">Processar Dados</button>
+      </form>
+
+      <!-- INSTRUÇÕES -->
+      <div class="instructions">
+        <h2>Como obter seus dados:</h2>
+        <ol>
+          <li>Acesse o site ou app do Uber</li>
+          <li>Vá até <strong>Privacidade e Dados</strong></li>
+          <li>Selecione <strong>Solicitar cópia dos meus dados</strong></li>
+          <li>Após receber o e-mail, baixe os arquivos CSV</li>
+          <li>Faça o upload de <strong>trips_data-0.csv</strong></li>
+        </ol>
+      </div>
+    </div>
+  <script>
+    const fileInput = document.getElementById('file-input');
+    const fileName = document.getElementById('file-name');
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        const selectedFile = e.target.files[0];
+        fileName.textContent = selectedFile.name;
+        fileName.innerHTML += `<br><small>${formatFileSize(selectedFile.size)}</small>`;
+      }
+    });
+
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+  </script>
+</body>
+</html>
