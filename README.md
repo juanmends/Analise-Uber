@@ -5,7 +5,7 @@
 **Uber Wrapped** é uma aplicação web desenvolvida em **Python** com **Flask**, **Pandas** e **Plotly**, que permite analisar os dados exportados do aplicativo **Uber** de forma visual e interativa.  
 Com ele, o usuário pode fazer upload de seus arquivos `.csv` de corridas, gerar estatísticas personalizadas e visualizar insights no estilo **Spotify Wrapped / Stories do Instagram**.
 
-> 🔧 Todo o **backend** de análise de dados e a aplicação web em Flask foram implementados manualmente por mim.  
+> 🔧 Todo o **back-end** de análise de dados e a aplicação web em Flask foram implementados manualmente por mim.  
 > 🎨 O **front-end** foi desenvolvido com auxílio de **inteligência artificial**, garantindo um design moderno e responsivo.
 
 ---
