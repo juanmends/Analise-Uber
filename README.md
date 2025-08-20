@@ -56,4 +56,5 @@ O projeto integra diversas tecnologias, incluindo:
 ### Pré-requisitos
 - Arquivo `.csv` exportado da sua conta Uber (disponível no aplicativo Uber em *Configurações > Privacidade > Baixar seus dados*)  
 - **Python** instalado  
-- Dependências listadas no `requirements.txt`  
+- Dependências listadas no `requirements.txt`
+- Criar arquivo "config.json" e inserir {"API_KEY" : "Chave-Exemplo"}
