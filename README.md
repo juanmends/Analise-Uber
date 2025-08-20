@@ -18,7 +18,6 @@ O projeto integra diversas tecnologias, incluindo:
 - **Plotly** — geração de gráficos interativos  
 - **Flask** — criação do servidor web  
 - **HTML5 + CSS3 + JavaScript** — interface visual no estilo "Wrapped"  
-- **Git + GitHub** — versionamento e colaboração  
 
 ---
 
