@@ -37,10 +37,10 @@ O projeto integra diversas tecnologias, incluindo:
 
 ### 🔻 Página de upload  
 *(exemplo de tela do projeto)*  
-![Upload](/exemplos/Upload.jpeg)
+![Upload](/exemplos/upload.jpeg)
 
 ### 🔻 Estatísticas gerais  
-![Estatísticas](/exemplos/Gerais2.jpeg)
+![Estatísticas](/exemplos/Gerais2.png)
 
 ![Estatísticas](/exemplos/Gerais.jpeg)
 
