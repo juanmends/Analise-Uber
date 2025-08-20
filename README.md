@@ -46,6 +46,8 @@ O projeto integra diversas tecnologias, incluindo:
 ### 🔻 Gráficos interativos  
 ![Gráficos](/exemplos/Gráficos.jpeg)
 
+![Gráficos](/exemplos/destinos.png)
+(Endereços censurados)
 ---
 
 ## 🔄 Como usar localmente
