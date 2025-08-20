@@ -14,8 +14,7 @@ Com ele, o usuário pode fazer upload de seus arquivos `.csv` de corridas, gerar
 
 O projeto integra diversas tecnologias, incluindo:
 
-- **Python** — processamento e análise de dados
-- **Pandas** — manipulação de dados estruturados  
+- **Pandas** — processamento, análise e manipulação de dados  
 - **Plotly** — geração de gráficos interativos  
 - **Flask** — criação do servidor web  
 - **HTML5 + CSS3 + JavaScript** — interface visual no estilo "Wrapped"  
@@ -26,7 +25,7 @@ O projeto integra diversas tecnologias, incluindo:
 ## 💡 Funcionalidades
 
 - ✅ Upload de arquivos `.csv` exportados do Uber  
-- ✅ Estatísticas personalizadas de corridas e embarques  
+- ✅ Estatísticas personalizadas de corridas, embarques e destinos  
 - ✅ Geração de gráficos interativos 
 - ✅ Interface com cards navegáveis, inspirada em stories  
 - ✅ Experiência imersiva e interativa semelhante ao **Spotify Wrapped**  
@@ -54,7 +53,7 @@ O projeto integra diversas tecnologias, incluindo:
 ## 🔄 Como usar localmente
 
 ### Pré-requisitos
-- Arquivo `.csv` exportado da sua conta Uber (disponível no aplicativo Uber em *Configurações > Privacidade > Baixar seus dados*)  
+- Arquivo `.csv` exportado da sua conta Uber (disponível no site ou aplicativo do Uber em *Configurações > Privacidade e Dados > Solicitar cópia dos seus dados*)  
 - **Python** instalado  
 - Dependências listadas no `requirements.txt`
 - Criar arquivo "config.json" e inserir {"API_KEY" : "Chave-Exemplo"}
